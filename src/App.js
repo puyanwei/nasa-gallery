@@ -10,27 +10,34 @@ class App extends Component {
         super(props);
         this.state = {
             imageLinks: [],
-            loading: true,
         };
     }
     render() {
-        let imageLinks;
-        // console.log(2, this.state.imageLinks);
-        // imageLinks = imageLinks.map((link, index) => {
-        //     // prettier-ignore
-        //     return (
-        //         <Image link={link} id={index} />
-        //     )
-        // });
+        // loading loading screen to let api data load
+        if (this.state.imageLinks.length === 0) {
+            return (
+                <div className="loading-screen">
+                    <h2>Loading... </h2>
+                </div>
+            );
+        } else {
+            let imageLinks = this.state.imageLinks;
+            imageLinks = imageLinks.map((link, index) => {
+                // prettier-ignore
+                return (
+                    <Image link={link} id={index} key={index} />
+                )
+            });
 
-        return (
-            <div className="App">
-                <h1>NASA Gallery</h1>
-                <p>{this.state.test}</p>
-                <SearchBox />
-                <section className="gallery">{imageLinks}</section>
-            </div>
-        );
+            return (
+                <div className="App">
+                    <h1>NASA Gallery</h1>
+                    <p>{this.state.test}</p>
+                    <SearchBox />
+                    <section className="gallery">{imageLinks}</section>
+                </div>
+            );
+        }
     }
 
     componentWillMount() {
@@ -47,7 +54,6 @@ class App extends Component {
             });
             this.setState({
                 imageLinks: array,
-                loading: false,
             });
         });
     };

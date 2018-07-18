@@ -1,6 +1,7 @@
 .App {
-  margin: 1rem;
-  text-align: center; }
+  margin: 1rem; }
+  .App .loading-screen h2 {
+    text-align: center; }
   .App .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }

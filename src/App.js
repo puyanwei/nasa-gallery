@@ -14,6 +14,12 @@ import cat9 from './assets/cat9.jpg';
 import SearchBox from './components/SearchBox/SearchBox.js';
 
 class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            images: [],
+        };
+    }
     render() {
         return (
             <div className="App">
@@ -35,14 +41,18 @@ class App extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.getImages());
+        console.log(this.getImageLinksFromAPI());
     };
 
-    getImages = () => {
-        const url = `https://images-api.nasa.gov/search?q=apollo%11`;
-        return axios.get(url).then((response) => {
-            return response.data;
+    getImageLinksFromAPI = () => {
+        const url = `https://images-api.nasa.gov/search?q=space&media_type=image`;
+        axios.get(url).then((response) => {
+            let arrayOfHashes = response.data.collection.items;
+            arrayOfHashes.forEach((element) => {
+                this.state.images.push(element.links[0].href);
+            });
         });
+        console.log(this.state.images);
     };
 }
 

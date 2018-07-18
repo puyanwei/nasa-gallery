@@ -9,12 +9,14 @@ import cat6 from './assets/cat6.png';
 import cat7 from './assets/cat7.jpeg';
 import cat8 from './assets/cat8.jpeg';
 import cat9 from './assets/cat9.jpg';
+import SearchBox from './components/SearchBox/SearchBox.js';
 
 class App extends Component {
     render() {
         return (
             <div className="App">
                 <h1>NASA Gallery</h1>
+                <SearchBox />
                 <section className="gallery">
                     <img src={cat1} alt="" />
                     <img src={cat2} alt="" />

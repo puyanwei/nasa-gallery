@@ -1,2 +1,10 @@
 .App {
+  margin: 1rem;
   text-align: center; }
+  .App .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .App .gallery img {
+      margin: 1rem;
+      width: 200px;
+      height: 200px; }

@@ -1,3 +1,14 @@
 .App {
+    margin: 1rem;
     text-align: center;
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        // CSS code taken from https://www.youtube.com/watch?v=tFKrK4eAiUQ
+        img {
+            margin: 1rem;
+            width: 200px;
+            height: 200px;
+        }
+    }
 }

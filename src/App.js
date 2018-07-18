@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import './App.css';
 import cat1 from './assets/cat1.jpg';
 import cat2 from './assets/cat2.jpg';
@@ -31,6 +33,17 @@ class App extends Component {
             </div>
         );
     }
+
+    componentDidMount = () => {
+        console.log(this.getImages());
+    };
+
+    getImages = () => {
+        const url = `https://images-api.nasa.gov/search?q=apollo%11`;
+        return axios.get(url).then((response) => {
+            return response.data;
+        });
+    };
 }
 
 export default App;

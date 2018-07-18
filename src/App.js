@@ -2,57 +2,54 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './App.css';
-import cat1 from './assets/cat1.jpg';
-import cat2 from './assets/cat2.jpg';
-import cat3 from './assets/cat3.jpg';
-import cat4 from './assets/cat4.jpg';
-import cat5 from './assets/cat5.png';
-import cat6 from './assets/cat6.png';
-import cat7 from './assets/cat7.jpeg';
-import cat8 from './assets/cat8.jpeg';
-import cat9 from './assets/cat9.jpg';
 import SearchBox from './components/SearchBox/SearchBox.js';
+import Image from './components/Image/Image.js';
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            images: [],
+            imageLinks: [],
+            loading: true,
         };
     }
     render() {
+        let imageLinks;
+        // console.log(2, this.state.imageLinks);
+        // imageLinks = imageLinks.map((link, index) => {
+        //     // prettier-ignore
+        //     return (
+        //         <Image link={link} id={index} />
+        //     )
+        // });
+
         return (
             <div className="App">
                 <h1>NASA Gallery</h1>
+                <p>{this.state.test}</p>
                 <SearchBox />
-                <section className="gallery">
-                    <img src={cat1} alt="" />
-                    <img src={cat2} alt="" />
-                    <img src={cat3} alt="" />
-                    <img src={cat4} alt="" />
-                    <img src={cat5} alt="" />
-                    <img src={cat6} alt="" />
-                    <img src={cat7} alt="" />
-                    <img src={cat8} alt="" />
-                    <img src={cat9} alt="" />
-                </section>
+                <section className="gallery">{imageLinks}</section>
             </div>
         );
     }
 
-    componentDidMount = () => {
-        console.log(this.getImageLinksFromAPI());
-    };
+    componentWillMount() {
+        this.getImageLinksFromAPI();
+    }
 
     getImageLinksFromAPI = () => {
+        let array = [];
         const url = `https://images-api.nasa.gov/search?q=space&media_type=image`;
         axios.get(url).then((response) => {
             let arrayOfHashes = response.data.collection.items;
             arrayOfHashes.forEach((element) => {
-                this.state.images.push(element.links[0].href);
+                array.push(element.links[0].href);
+            });
+            this.setState({
+                imageLinks: array,
+                loading: false,
             });
         });
-        console.log(this.state.images);
     };
 }
 

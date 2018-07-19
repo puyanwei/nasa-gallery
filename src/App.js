@@ -14,44 +14,35 @@ class App extends Component {
     }
 
     render() {
-        // loading loading screen to let api data load
-        if (this.state.imageData.length === 0) {
+        let imageData = this.state.imageData.slice(0, 20);
+        imageData = imageData.map((hash, index) => {
             return (
-                <div className="loading-screen">
-                    <h2>Loading... </h2>
-                </div>
+                <Image
+                    title={hash.title}
+                    link={hash.link}
+                    id={index}
+                    key={index}
+                />
             );
-        } else {
-            let imageData = this.state.imageData;
-            imageData = imageData.map((hash, index) => {
-                return (
-                    <Image
-                        title={hash.title}
-                        link={hash.link}
-                        id={index}
-                        key={index}
-                    />
-                );
-            });
+        });
 
-            return (
-                <div className="App">
-                    <h1>NASA Gallery</h1>
-                    <p>{this.state.test}</p>
-                    <SearchBox suggestedImages={this.suggestedImages} />
-                    <section className="gallery">{imageData}</section>
-                </div>
-            );
-        }
+        return (
+            <div className="App">
+                <h1>NASA Gallery</h1>
+                <SearchBox suggestedImages={this.suggestedImages} />
+                <section className="gallery">{imageData}</section>
+            </div>
+        );
     }
 
     componentWillMount() {
         this.getAPIData();
     }
 
-    getAPIData = (search = 'space') => {
+    getAPIData = (search = 'star') => {
         let array = [];
-        const url = `https://images-api.nasa.gov/search?q=${search}&media_type=image`;
+        console.log(search);
+        const url = `https://images-api.nasa.gov/search?title=${search}&media_type=image`;
         axios.get(url).then((response) => {
             let arrayOfHashes = response.data.collection.items;
             arrayOfHashes.forEach((element) => {

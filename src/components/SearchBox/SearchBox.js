@@ -9,22 +9,24 @@ class SearchBox extends Component {
 
     render() {
         return (
-            <form className="search-box" onSubmit={this.handleSubmit}>
-                <input
-                    placeholder="Search Photos"
-                    ref={this.userInput}
-                    autoFocus
-                    required
-                />
-                <input type="submit" />
-            </form>
+            <input
+                placeholder="Search Photos"
+                ref={this.userInput}
+                onKeyUp={this.handleKeyUp}
+                autoFocus
+                required
+            />
         );
     }
 
     handleSubmit = (event) => {
+        this.handleKeyUp();
+        this.userInput.current.value = '';
+    };
+
+    handleKeyUp = (event) => {
         event.preventDefault();
         this.props.suggestedImages(this.userInput.current.value);
-        this.userInput.current.value = '';
     };
 }
 

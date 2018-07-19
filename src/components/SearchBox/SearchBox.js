@@ -10,7 +10,7 @@ class SearchBox extends Component {
     render() {
         return (
             <input
-                placeholder="Search Photos"
+                placeholder="Search Photos - Enjoy the default stars"
                 ref={this.userInput}
                 onKeyUp={this.handleKeyUp}
                 autoFocus
@@ -19,14 +19,11 @@ class SearchBox extends Component {
         );
     }
 
-    handleSubmit = (event) => {
-        this.handleKeyUp();
-        this.userInput.current.value = '';
-    };
-
     handleKeyUp = (event) => {
         event.preventDefault();
-        this.props.suggestedImages(this.userInput.current.value);
+        this.userInput.current.value === ''
+            ? this.props.suggestedImages()
+            : this.props.suggestedImages(this.userInput.current.value);
     };
 }
 

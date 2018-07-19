@@ -63,7 +63,19 @@ class App extends Component {
     };
 
     filterByName = () => {
-        console.log('filterbyname');
+        let arrayOfHashes = this.state.imageData;
+        arrayOfHashes.sort((a, b) => {
+            if (a.title < b.title) {
+                return -1;
+            } else if (a.title > b.title) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        this.setState({
+            imageData: arrayOfHashes,
+        });
     };
 }
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import SearchBox from './components/SearchBox/SearchBox.js';
 import Image from './components/Image/Image.js';
+import Sort from './components/Sort/Sort.js';
 
 class App extends Component {
     constructor(props) {
@@ -30,6 +31,7 @@ class App extends Component {
             <div className="App">
                 <h1>NASA Gallery</h1>
                 <SearchBox suggestedImages={this.suggestedImages} />
+                <Sort filterByName={this.filterByName} />
                 <section className="gallery">{imageData}</section>
             </div>
         );
@@ -41,7 +43,6 @@ class App extends Component {
 
     getAPIData = (search = 'star') => {
         let array = [];
-        console.log(search);
         const url = `https://images-api.nasa.gov/search?title=${search}&media_type=image`;
         axios.get(url).then((response) => {
             let arrayOfHashes = response.data.collection.items;
@@ -59,6 +60,10 @@ class App extends Component {
 
     suggestedImages = (input) => {
         this.getAPIData(input);
+    };
+
+    filterByName = () => {
+        console.log('filterbyname');
     };
 }
 

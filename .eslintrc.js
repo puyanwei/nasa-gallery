@@ -8,6 +8,7 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:jest/recommended',
     ],
+    parser: 'babel-eslint',
     parserOptions: {
         ecmaFeatures: {
             experimentalObjectRestSpread: true,

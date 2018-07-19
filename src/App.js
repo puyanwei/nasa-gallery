@@ -9,25 +9,29 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            imageLinks: [],
+            imageData: [],
         };
     }
 
     render() {
         // loading loading screen to let api data load
-        if (this.state.imageLinks.length === 0) {
+        if (this.state.imageData.length === 0) {
             return (
                 <div className="loading-screen">
                     <h2>Loading... </h2>
                 </div>
             );
         } else {
-            let imageLinks = this.state.imageLinks;
-            imageLinks = imageLinks.map((link, index) => {
-                // prettier-ignore
+            let imageData = this.state.imageData;
+            imageData = imageData.map((hash, index) => {
                 return (
-                    <Image link={link} id={index} key={index} />
-                )
+                    <Image
+                        title={hash.title}
+                        link={hash.link}
+                        id={index}
+                        key={index}
+                    />
+                );
             });
 
             return (
@@ -35,32 +39,35 @@ class App extends Component {
                     <h1>NASA Gallery</h1>
                     <p>{this.state.test}</p>
                     <SearchBox suggestedImages={this.suggestedImages} />
-                    <section className="gallery">{imageLinks}</section>
+                    <section className="gallery">{imageData}</section>
                 </div>
             );
         }
     }
 
     componentWillMount() {
-        this.getImageLinksFromAPI();
+        this.getAPIData();
     }
 
-    getImageLinksFromAPI = (search = 'space') => {
+    getAPIData = (search = 'space') => {
         let array = [];
         const url = `https://images-api.nasa.gov/search?q=${search}&media_type=image`;
         axios.get(url).then((response) => {
             let arrayOfHashes = response.data.collection.items;
             arrayOfHashes.forEach((element) => {
-                array.push(element.links[0].href);
+                array.push({
+                    title: element.data[0].title,
+                    link: element.links[0].href,
+                });
             });
             this.setState({
-                imageLinks: array,
+                imageData: array,
             });
         });
     };
 
     suggestedImages = (input) => {
-        this.getImageLinksFromAPI(input);
+        this.getAPIData(input);
     };
 }
 

@@ -5,7 +5,10 @@
   .App .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .App .gallery p {
+      padding: 1rem, 0;
+      margin: 0; }
     .App .gallery img {
-      margin: 1rem;
+      padding: 1rem;
       width: 200px;
       height: 200px; }

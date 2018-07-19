@@ -43,8 +43,7 @@ npm run lint
 
 I started out by drawing out roughly how the page would look. That helped me think about how to split up my components and structure my code.
 
-![2](https://user-images.githubusercontent.com/14803518/42970199-909bc2f0-8ba0-11e8-9d6f-c80e97969fc8.jpg)
-![1](https://user-images.githubusercontent.com/14803518/42970200-90c0e292-8ba0-11e8-8175-45e182ce76dd.jpg)
+![1](https://user-images.githubusercontent.com/14803518/42970356-05a862d8-8ba1-11e8-9be1-a0537d5349b9.jpg)
 
 Then I broke down the process into more manageable steps. This would give me a better way to direct myself, and also help me identify any potentially tough sections that might require more attention.
 
@@ -59,6 +58,8 @@ Once that was completed, I used [Axios](https://github.com/axios/axios) to help 
 My aim was to grab one url and then pass the data using a prop to my Image component, where it renders the image to the page. Once this was successful, I was able to grab the data I needed, copy it to the state and loop through all the urls and apply it to the gallery. The API always seems to send 100 responses.
 
 I wanted to load in photos by default using the ComponentDidMount lifecycle hook but it was causing issues because the page was loading before the responses were received, even though the call was made before the render. I solved this problem by temporarily putting in a conditional loading screen which showed when my data array was empty, and showed the page when it wasn't.
+
+![2](https://user-images.githubusercontent.com/14803518/42970357-05d0e726-8ba1-11e8-906a-fde7442d5128.jpg)
 
 The next step was to link the API data to the search box and return information that was relevant to whatever the user types in. This involved passing the data from the SearchBox component back to the parent component and then calling the #getAPIData function to make a new call based on the user input.
 

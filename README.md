@@ -43,8 +43,8 @@ npm run lint
 
 I started out by drawing out roughly how the page would look. That helped me think about how to split up my components and structure my code.
 
-![1](https://user-images.githubusercontent.com/14803518/42968192-7a225508-8b9a-11e8-9c6a-2a54e07f5087.jpg)
-![2](https://user-images.githubusercontent.com/14803518/42968193-7a433b7e-8b9a-11e8-8769-c44173b01124.jpg)
+![2](https://user-images.githubusercontent.com/14803518/42970199-909bc2f0-8ba0-11e8-9d6f-c80e97969fc8.jpg)
+![1](https://user-images.githubusercontent.com/14803518/42970200-90c0e292-8ba0-11e8-8175-45e182ce76dd.jpg)
 
 Then I broke down the process into more manageable steps. This would give me a better way to direct myself, and also help me identify any potentially tough sections that might require more attention.
 
@@ -72,7 +72,7 @@ Unfortunately there is some repetitive code for these functions, as I was unable
 
 With more time I would like to fix these bugs;
 
--   Gallery images lose alignment if title is long and takes up two lines
+-   Gallery images lose alignment if title is long and takes up two lines. Possibly limit the length of title as a potential solution
 -   Refactoring sort functions so that there is less repeating code
 -   More consistent loading of images. Possibly have a loading icon that shows until all images have been loaded. Find a way to speed up loading if possible?
 

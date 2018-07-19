@@ -45,9 +45,9 @@ class App extends Component {
         this.getImageLinksFromAPI();
     }
 
-    getImageLinksFromAPI = () => {
+    getImageLinksFromAPI = (search = 'space') => {
         let array = [];
-        const url = `https://images-api.nasa.gov/search?q=space&media_type=image`;
+        const url = `https://images-api.nasa.gov/search?q=${search}&media_type=image`;
         axios.get(url).then((response) => {
             let arrayOfHashes = response.data.collection.items;
             arrayOfHashes.forEach((element) => {
@@ -60,8 +60,7 @@ class App extends Component {
     };
 
     suggestedImages = (input) => {
-        let userInput = input;
-        console.log('suggested images function called!', userInput);
+        this.getImageLinksFromAPI(input);
     };
 }
 

@@ -24,6 +24,7 @@ class SearchBox extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.suggestedImages(this.userInput.current.value);
+        this.userInput.current.value = '';
     };
 }
 

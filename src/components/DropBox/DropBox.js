@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './DropBox.css';
 
 class DropBox extends Component {
@@ -11,7 +13,7 @@ class DropBox extends Component {
 					defaultValue={-1}
 				>
 					<option value="-1" disabled>
-                        Select Sorting
+						Select Sorting
 					</option>
 					<option value="Name">By Name</option>
 					<option value="Newest">By Newest</option>
@@ -21,18 +23,24 @@ class DropBox extends Component {
 		);
 	}
 
-    handleChange = (event) => {
-    	let target = event.target.value;
-    	if (target === 'Name') {
-    		this.props.filterByName();
-    	}
-    	if (target === 'Oldest') {
-    		this.props.filterByDateOld();
-    	}
-    	if (target === 'Newest') {
-    		this.props.filterByDateNew();
-    	}
-    };
+	handleChange = (event) => {
+		let target = event.target.value;
+		if (target === 'Name') {
+			this.props.filterByName();
+		}
+		if (target === 'Oldest') {
+			this.props.filterByDateOld();
+		}
+		if (target === 'Newest') {
+			this.props.filterByDateNew();
+		}
+	};
 }
+
+DropBox.propTypes = {
+	filterByName: PropTypes.func,
+	filterByDateOld: PropTypes.func,
+	filterByDateNew: PropTypes.func
+};
 
 export default DropBox;

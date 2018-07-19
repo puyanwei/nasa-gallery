@@ -70,57 +70,57 @@ class App extends Component {
 		});
 	}
 
-    suggestedImages = (input) => {
-    	this.getAPIData(input);
-    };
+	suggestedImages = (input) => {
+		this.getAPIData(input);
+	};
 
-    filterByName = () => {
-    	let arrayOfHashes = this.state.imageData;
-    	arrayOfHashes.sort((a, b) => {
-    		if (a.title < b.title) {
-    			return -1;
-    		} else if (a.title > b.title) {
-    			return 1;
-    		} else {
-    			return 0;
-    		}
-    	});
-    	this.setState({
-    		imageData: arrayOfHashes
-    	});
-    };
+	filterByName = () => {
+		let arrayOfHashes = this.state.imageData;
+		arrayOfHashes.sort((a, b) => {
+			if (a.title < b.title) {
+				return -1;
+			} else if (a.title > b.title) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+		this.setState({
+			imageData: arrayOfHashes
+		});
+	};
 
-    filterByDateOld = () => {
-    	let arrayOfHashes = this.state.imageData;
-    	arrayOfHashes.sort((a, b) => {
-    		if (a.dateTaken < b.dateTaken) {
-    			return -1;
-    		} else if (a.dateTaken > b.dateTaken) {
-    			return 1;
-    		} else {
-    			return 0;
-    		}
-    	});
-    	this.setState({
-    		imageData: arrayOfHashes
-    	});
-    };
+	filterByDateOld = () => {
+		let arrayOfHashes = this.state.imageData;
+		arrayOfHashes.sort((a, b) => {
+			if (a.dateTaken < b.dateTaken) {
+				return -1;
+			} else if (a.dateTaken > b.dateTaken) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+		this.setState({
+			imageData: arrayOfHashes
+		});
+	};
 
-    filterByDateNew = () => {
-    	let arrayOfHashes = this.state.imageData;
-    	arrayOfHashes.sort((a, b) => {
-    		if (a.dateTaken > b.dateTaken) {
-    			return -1;
-    		} else if (a.dateTaken < b.dateTaken) {
-    			return 1;
-    		} else {
-    			return 0;
-    		}
-    	});
-    	this.setState({
-    		imageData: arrayOfHashes
-    	});
-    };
+	filterByDateNew = () => {
+		let arrayOfHashes = this.state.imageData;
+		arrayOfHashes.sort((a, b) => {
+			if (a.dateTaken > b.dateTaken) {
+				return -1;
+			} else if (a.dateTaken < b.dateTaken) {
+				return 1;
+			} else {
+				return 0;
+			}
+		});
+		this.setState({
+			imageData: arrayOfHashes
+		});
+	};
 }
 
 export default App;

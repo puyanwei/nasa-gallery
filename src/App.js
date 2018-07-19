@@ -29,13 +29,20 @@ class App extends Component {
 
         return (
             <div className="App">
-                <h1>NASA Gallery</h1>
-                <SearchBox suggestedImages={this.suggestedImages} />
-                <DropBox
-                    filterByName={this.filterByName}
-                    filterByDateOld={this.filterByDateOld}
-                    filterByDateNew={this.filterByDateNew}
-                />
+                <div className="top-container">
+                    <h1>Welcome to the NASA Gallery</h1>
+                    <img
+                        className="nasa-logo"
+                        src={require('./assets/nasa-logo.png')}
+                        alt=""
+                    />
+                    <SearchBox suggestedImages={this.suggestedImages} />
+                    <DropBox
+                        filterByName={this.filterByName}
+                        filterByDateOld={this.filterByDateOld}
+                        filterByDateNew={this.filterByDateNew}
+                    />
+                </div>
                 <section className="gallery">{imageData}</section>
             </div>
         );

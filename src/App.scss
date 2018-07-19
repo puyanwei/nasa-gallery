@@ -1,8 +1,13 @@
 .App {
     margin: 1rem;
-    .loading-screen {
-        h2 {
-            text-align: center;
+    font-family: 'Open Sans', sans-serif;
+
+    .top-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        .nasa-logo {
+            margin: 0 auto;
+            padding-bottom: 1rem;
         }
     }
     .gallery {

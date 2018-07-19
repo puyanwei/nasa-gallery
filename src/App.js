@@ -12,6 +12,7 @@ class App extends Component {
             imageLinks: [],
         };
     }
+
     render() {
         // loading loading screen to let api data load
         if (this.state.imageLinks.length === 0) {
@@ -33,7 +34,7 @@ class App extends Component {
                 <div className="App">
                     <h1>NASA Gallery</h1>
                     <p>{this.state.test}</p>
-                    <SearchBox />
+                    <SearchBox suggestedImages={this.suggestedImages} />
                     <section className="gallery">{imageLinks}</section>
                 </div>
             );
@@ -56,6 +57,11 @@ class App extends Component {
                 imageLinks: array,
             });
         });
+    };
+
+    suggestedImages = (input) => {
+        let userInput = input;
+        console.log('suggested images function called!', userInput);
     };
 }
 

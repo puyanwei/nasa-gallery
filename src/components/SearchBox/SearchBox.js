@@ -2,14 +2,29 @@ import React, { Component } from 'react';
 import './SearchBox.css';
 
 class SearchBox extends Component {
-	render() {
-		return (
-			<div className="search-box">
-				<input placeholder="Search Photos" />
-				<input type="submit" />
-			</div>
-		);
-	}
+    constructor() {
+        super();
+        this.userInput = React.createRef();
+    }
+
+    render() {
+        return (
+            <form className="search-box" onSubmit={this.handleSubmit}>
+                <input
+                    placeholder="Search Photos"
+                    ref={this.userInput}
+                    autoFocus
+                    required
+                />
+                <input type="submit" />
+            </form>
+        );
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.suggestedImages(this.userInput.current.value);
+    };
 }
 
 export default SearchBox;

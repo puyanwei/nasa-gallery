@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import SearchBox from './components/SearchBox/SearchBox.js';
 import Image from './components/Image/Image.js';
-import Sort from './components/Sort/Sort.js';
+import DropBox from './components/DropBox/DropBox.js';
 
 class App extends Component {
     constructor(props) {
@@ -31,7 +31,11 @@ class App extends Component {
             <div className="App">
                 <h1>NASA Gallery</h1>
                 <SearchBox suggestedImages={this.suggestedImages} />
-                <Sort filterByName={this.filterByName} />
+                <DropBox
+                    filterByName={this.filterByName}
+                    filterByDateOld={this.filterByDateOld}
+                    filterByDateNew={this.filterByDateNew}
+                />
                 <section className="gallery">{imageData}</section>
             </div>
         );
@@ -50,6 +54,7 @@ class App extends Component {
                 array.push({
                     title: element.data[0].title,
                     link: element.links[0].href,
+                    dateTaken: element.data[0].date_created,
                 });
             });
             this.setState({
@@ -68,6 +73,38 @@ class App extends Component {
             if (a.title < b.title) {
                 return -1;
             } else if (a.title > b.title) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        this.setState({
+            imageData: arrayOfHashes,
+        });
+    };
+
+    filterByDateOld = () => {
+        let arrayOfHashes = this.state.imageData;
+        arrayOfHashes.sort((a, b) => {
+            if (a.dateTaken < b.dateTaken) {
+                return -1;
+            } else if (a.dateTaken > b.dateTaken) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        this.setState({
+            imageData: arrayOfHashes,
+        });
+    };
+
+    filterByDateNew = () => {
+        let arrayOfHashes = this.state.imageData;
+        arrayOfHashes.sort((a, b) => {
+            if (a.dateTaken > b.dateTaken) {
+                return -1;
+            } else if (a.dateTaken < b.dateTaken) {
                 return 1;
             } else {
                 return 0;

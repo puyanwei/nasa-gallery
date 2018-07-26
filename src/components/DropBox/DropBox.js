@@ -1,29 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './DropBox.css';
 
-class DropBox extends Component {
-	render() {
-		return (
-			<div className="dropdown-wrapper">
-				<select
-					name="sort"
-					onChange={this.handleChange}
-					defaultValue={-1}
-				>
-					<option value="-1" disabled>
-						Select Sorting
-					</option>
-					<option value="Name">By Name</option>
-					<option value="Newest">By Newest</option>
-					<option value="Oldest">By Oldest</option>
-				</select>
-			</div>
-		);
-	}
-
-	handleChange = (event) => {
+const DropBox = (props) => {
+	const handleChange = (event) => {
 		let target = event.target.value;
 		if (target === 'Name') {
 			this.props.filterByName();
@@ -35,7 +16,19 @@ class DropBox extends Component {
 			this.props.filterByDateNew();
 		}
 	};
-}
+	return (
+		<div className="dropdown-wrapper">
+			<select name="sort" onChange={handleChange} defaultValue={-1}>
+				<option value="-1" disabled>
+					Select Sorting
+				</option>
+				<option value="Name">By Name</option>
+				<option value="Newest">By Newest</option>
+				<option value="Oldest">By Oldest</option>
+			</select>
+		</div>
+	);
+};
 
 DropBox.propTypes = {
 	filterByName: PropTypes.func,
